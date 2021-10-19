@@ -6,7 +6,7 @@ export = {
   type: 'postgres',
   host: config.default.PGHOST,
   port: config.default.PGPORT,
-  url: config.default.DB_URL,
+  url: config.default.DATABASE_URL,
   username: config.default.PGUSER,
   password: config.default.PGPASSWORD,
   database: config.default.PGDATABASE,
