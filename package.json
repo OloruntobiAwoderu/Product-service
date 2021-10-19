@@ -4,7 +4,6 @@
   "description": "A backend service for managing perishable inventory.",
   "main": "build/index.js",
   "engines": {
-    "node": ">=10.0.0",
     "npm": ">=6.0.0"
   },
   "scripts": {
