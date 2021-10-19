@@ -17,5 +17,7 @@ export = {
   cli: {
     migrationsDir: 'src/database/migrations',
   },
-  extra: { ssl: true, rejectUnauthorized: false },
+  ssl: process.env.NODE_ENV === 'production'
+  ? { rejectUnauthorized: false }
+  : false,
 };
