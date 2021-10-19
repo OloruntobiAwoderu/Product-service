@@ -1,6 +1,7 @@
 import 'dotenv/config';
 
 export default {
+	DB_URL: process.env.DB_URL,
     PGDATABASE: process.env.PGDATABASE as string,
     PGHOST: process.env.PGHOST as string,
     PGPORT: process.env.PGPORT as string,
