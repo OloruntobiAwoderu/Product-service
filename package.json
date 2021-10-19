@@ -1,0 +1,78 @@
+{
+  "name": "inventory_service",
+  "version": "1.0.0",
+  "description": "A backend service for managing perishable inventory.",
+  "main": "build/index.js",
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "pretest": "NODE_ENV=test run-s  test-db:*",
+    "test": "NODE_ENV=test mocha -r ts-node/register test/**/*.test.ts --timeout 12000 --exit",
+    "test-db:down": "NODE_ENV=test npm run migrate:down",
+    "test-db:up": "NODE_ENV=test npm run migrate",
+    "start": "node .",
+    "start:dev": "nodemon",
+    "prestart:dev": "npm run migrate",
+    "build": "run-s lint:fix migrate build:*",
+    "build:clean": "rimraf build",
+    "build:compile": "webpack",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "migrate:build": "ts-node ./node_modules/typeorm/cli.js -f ormconfig.ts",
+    "migrate:create": "npm run migrate:build -- migration:create -n",
+    "migrate": "npm run migrate:build -- migration:run",
+    "migrate:down": "npm run migrate:build -- migration:revert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/daylay92"
+  },
+  "keywords": [
+    "Inventory",
+    "products",
+    "sales"
+  ],
+  "author": "Ayodele Akinbohun",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.11",
+    "@types/mocha": "^8.2.2",
+    "@types/morgan": "^1.9.2",
+    "@types/node": "^14.14.37",
+    "@types/node-cron": "^2.0.3",
+    "@types/swagger-ui-express": "^4.1.2",
+    "@typescript-eslint/eslint-plugin": "^4.20.0",
+    "@typescript-eslint/parser": "^4.20.0",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.23.0",
+    "mocha": "^8.3.2",
+    "nodemon": "^2.0.7",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "ts-loader": "^8.1.0",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.2.3",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-node-externals": "^2.5.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.4.1",
+    "joi": "^17.4.0",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.0",
+    "pg": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
+    "swagger-ui-express": "^4.1.6",
+    "typeorm": "^0.2.32",
+    "winston": "^3.3.3"
+  }
+}

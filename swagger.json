@@ -1,0 +1,239 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0",
+      "title": "Inventory Service",
+      "description": "A backend service for managing perishable inventory."
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3450/"
+      },
+      {
+        "url": ""
+      }
+    ],
+    "tags": [
+      {
+        "name": "Inventory",
+        "description": "Endpoints for interacting with the inventory service"
+      }
+    ],
+    "paths": {
+      "/{item}/add": {
+        "post": {
+          "description": "Add a lot of item to the inventory (Think of the lot as a batch of new items, the ':item' query represents the name of the item.)",
+          "summary": "Adds a batch of an item to the inventory",
+          "tags": ["Inventory"],
+          "produces": ["application/json"],
+          "security": [],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "description": "This is the request body object required to add an item to the inventory system.",
+              "schema": {
+                "$ref": "#/components/schemas/requestBody/addProductRequest"
+              }
+            },
+            {
+                "in": "path",
+                "name": "item",
+                "required": true,
+                "description": "The name of the item being added."
+              }
+          ],
+          "responses": {
+            "201": {
+              "description": "Successfully added items to inventory.",
+              "schema": {
+                "$ref": "#/components/schemas/responseBody/201"
+              }
+            },
+            "400": {
+              "description": "Bad Request, Validation error occurred",
+              "schema": {
+                "$ref": "#/components/schemas/responseBody/400"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/components/schemas/responseBody/500"
+              }
+            }
+          }
+        }
+      },
+      "/{item}/sell": {
+        "post": {
+          "description": "Used to sell a quantity of an item and reduce its inventory from the database.",
+          "summary": "Used to sell a quantity of an item.",
+          "tags": ["Inventory"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "required": true,
+              "description": "This is the request object required to sell an item.",
+              "schema": {
+                "$ref": "#/components/schemas/requestBody/sellProductRequest"
+              }
+            },
+            {
+                "in": "path",
+                "name": "item",
+                "required": true,
+                "description": "The name of the item being added."
+              }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully sold a specific quantity of items.",
+              "schema": {
+                "$ref": "#/components/schemas/responseBody/201"
+              }
+            },
+            "400": {
+              "description": "Bad Request, Validation error occurred",
+              "schema": {
+                "$ref": "#/components/schemas/responseBody/400"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/components/schemas/responseBody/500"
+              }
+            }
+          }
+        }
+      },
+      "/{item}/quantity": {
+        "get": {
+          "description": "Used to get non-expired quantity of the item from the system.",
+          "summary": "Retrieves non-expired quantity of an item.",
+          "tags": ["Inventory"],
+          "produces": ["application/json"],
+          "parameters": [
+            {
+                "in": "path",
+                "name": "item",
+                "required": true,
+                "description": "The name of the item."
+              }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successfully sold a specific quantity of items.",
+              "schema": {
+                "$ref": "#/components/schemas/responseBody/quantityResponse"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "$ref": "#/components/schemas/responseBody/500"
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "requestBody": {
+          "addProductRequest": {
+            "title": "Add product Request",
+            "type": "object",
+            "properties": {
+              "quantity": {
+                "description": "The quantity of the item to be added",
+                "type": "number"
+              },
+              "expiry": {
+                "description": "The expiry date of the lot, it must be in milliseconds-since-epoch",
+                "type": "number"
+              }
+            },
+            "example": {
+              "quantity": 12,
+              "expiry": 2674800000
+            },
+            "required": ["quantity", "expiry"]
+          },
+          "sellProductRequest": {
+            "title": "Sell product Request",
+            "type": "object",
+            "properties": {
+              "quantity": {
+                "description": "The quantity of the item to be be sold",
+                "type": "number"
+              }
+            },
+            "example": {
+              "quantity": 14
+            },
+            "required": ["quantity"]
+          }
+        },
+        "responseBody": {
+        "quantityResponse": {
+            "properties": {
+                "quantity": {
+                  "description": "non-expired quantity of item",
+                  "type": "number"
+                },
+                "validTill": {
+                    "description": "milliseconds-since-epoch representing the maximum time till which the returned quantity is valid. should be null if returned quantity is 0",
+                    "type": "number"
+                  }
+              },
+              "example": {
+                "quantity": 2,
+                "validTill": 2674800000
+              }
+        },
+          "201": {
+            "properties": {}
+          },
+          "400": {
+            "properties": {
+              "error": {
+                "description": "A descriptive error message",
+                "type": "string"
+              }
+            },
+            "example": {
+              "error": "Some validation error occurred"
+            }
+          },
+          "404": {
+            "properties": {
+                "error": {
+                  "description": "A descriptive error message",
+                  "type": "string"
+                }
+              },
+              "example": {
+                "error": "Oops, You've reached a dead end"
+              }
+          },
+          "500": {
+            "properties": {
+                "error": {
+                  "description": "A descriptive error message",
+                  "type": "string"
+                }
+              },
+              "example": {
+                "error": "Oops, something broke on the server!!!"
+              }
+          }
+        }
+      }
+    }
+  }
+  
