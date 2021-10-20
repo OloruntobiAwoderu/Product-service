@@ -15,7 +15,8 @@ const databaseProvider = async<U>(createConnection: <T>(options: T)=> Promise<U>
         ProductBatch
         ],
     synchronize: false,
-    ssl: config.NODE_ENV === Environ.production,
+    ssl: config.NODE_ENV === Environ.production ? { rejectUnauthorized: false }
+	: false,
     logging: config.DATABASE_LOGGING as boolean
 }); 
 
