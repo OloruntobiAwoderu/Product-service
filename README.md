@@ -1,7 +1,7 @@
 
 ---
 
-# Inventory Service
+# Product-service
 
 A simple REST API Server for managing perishable inventory.
 
