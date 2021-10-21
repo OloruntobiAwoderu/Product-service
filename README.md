@@ -95,7 +95,7 @@ The API is currently in version 1 (v1) and it is hosted on heroku at [Base URL](
 
 ## API Documentation
 
-You can find the documentation here [API DOCS]https://products-v1.herokuapp.com/api/v1/docs/)
+You can find the documentation here [API DOCS]https://products-v1.herokuapp.com/api-docs)
 For best results, I recommend testing via the API DOCS
 
 ## Author
