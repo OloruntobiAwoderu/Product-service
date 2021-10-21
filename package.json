@@ -24,16 +24,7 @@
     "migrate": "npm run migrate:build -- migration:run",
     "migrate:down": "npm run migrate:build -- migration:revert"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/daylay92"
-  },
-  "keywords": [
-    "Inventory",
-    "products",
-    "sales"
-  ],
-  "author": "Ayodele Akinbohun",
+  "author": "Oloruntobi Awoderu",
   "license": "MIT",
   "devDependencies": {
     "@types/cors": "^2.8.10",

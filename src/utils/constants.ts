@@ -8,7 +8,7 @@ export default {
         error: "Oops, You've reached a dead end",
         statusCode: 404
       },
-      PING: "Thanks for dropping by, let's get the inventory show on the road !!!",
+      HELLO: "Hello World!!!",
       logLevels: ['error', 'warning', 'info', 'debug', 'silly'],
       ADD_ITEM_ERROR: 'Error adding new item.',
       SELL_ITEM_ERROR: 'Error initializing item purchase',

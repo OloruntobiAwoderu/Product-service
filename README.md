@@ -34,8 +34,7 @@ To get started, clone this repository on your local machine using the following 
 Open your terminal and navigate to the folder you want the project to be and enter the the following commands:
 
 ```
-$ git clone -b develop https://github.com/daylay92/Inventory_service.git
-$ cd Inventory_service
+$ cd products
 $ npm install
 ```
 
@@ -51,7 +50,7 @@ Create a `.env` file and add the environment variables described in the .env.sam
 - `LOG_LEVEL` - The application log level, it determines what shows up on the logs. The default level if not set is debug.
 - `LOG_TO_FILE` - Can be true or false. It determines whether the application log would be written to a file. It is false by default.
 
-* Please note that with the exception of `PORT`, `NODE_ENV` and `LOG_TO_FILE` all the above environment variables most be prefixed with `TEST_` and `DEV_` in test and development mode for the application to work properly. Have a look at the `.env.sample` file for more details.
+* Please note that with the exception of `PORT`, `NODE_ENV` and `LOG_TO_FILE` all the above environment variables most be prefixed with `TEST_` and `DEV_` in test and development mode for the application to work properly. Have a look at the `.env-sample` file for more details.
 
 ## Starting the dev server
 
@@ -67,7 +66,7 @@ npm test
 
 ## Test the endpoints
 
-The application can be tested locally through localhost on port 3000 or through the live [url](https://stacktrace01.herokuapp.com/) using postman or insomnia
+The application can be tested locally through localhost on port 3000 or through the live [url](https://products-v1.herokuapp.com/) using postman or insomnia
 
 
 ### API Endpoints
@@ -92,13 +91,13 @@ GET  | /:item/quantity  | get non-expired quantity of the item from the system |
 
 ## API
 
-The API is currently in version 1 (v1) and it is hosted on heroku at [Base URL](https://stacktrace01.herokuapp.com/api/v1)
+The API is currently in version 1 (v1) and it is hosted on heroku at [Base URL](https://products-v1.herokuapp.com/)
 
 ## API Documentation
 
-You can find the documentation here [API DOCS](https://stacktrace01.herokuapp.com/api/v1/docs/)
+You can find the documentation here [API DOCS]https://products-v1.herokuapp.com/api/v1/docs/)
 For best results, I recommend testing via the API DOCS
 
 ## Author
 
-- **Ayodele Akinbohun**
+- **Oloruntobi Awoderu**

@@ -32,8 +32,8 @@ app.use(cors());
 // adds middleware that parses requests with application/json data encoding
 app.use(json());
 
-// adds a heartbeat route for the culture
-app.get('/', (req, res) => successResponse(res, { message: constants.PING }));
+// adds a simple get route 
+app.get('/', (req, res) => successResponse(res, { message: constants.HELLO }));
 
 // engages all defined routes
 app.use(routes);
@@ -64,7 +64,7 @@ databaseProvider(createConnection)
   cronProvider();
 // server listens for connections
 app.listen(port, () => {
-  logger.info(`The app is kicking on: ${port}`);
+  logger.info(`The app is running on: ${port}`);
 });
 })
 .catch(error => {

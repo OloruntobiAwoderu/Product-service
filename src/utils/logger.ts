@@ -11,7 +11,6 @@ const { combine, label: winstonLabel, timestamp, colorize, printf } = winston.fo
  * Configures an instance of the winston logger for the application.
  * @param { string } label - A label to tag the logs with.
  * @returns { winston.Logger } - An instance of the winston logger with custom properties.
- * @see  https://www.npmjs.com/package/winston
  */
 const initLogger = (label = 'APPLOG'): winston.Logger => {
   // Configuration properties for the logs written to the stdout
