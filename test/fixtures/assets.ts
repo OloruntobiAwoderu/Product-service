@@ -1,5 +1,5 @@
 export const pingReply = {
-    message: "Thanks for dropping by, let's get the inventory show on the road !!!"
+    message:  "Hello World!!!"
 }
 
 export const sampleItems = {

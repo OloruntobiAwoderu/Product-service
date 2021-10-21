@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import 'mocha';
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
@@ -116,5 +117,16 @@ describe('POST /:item/sell', () => {
             quantity: 0,
             validTill: null
         });
-      });
+	  });
+	  
+	  it('should response with a  error message for wrong http verb', async () => {
+		  
+        const response = await chai
+        .request(app)
+        .post('/phone/quantity');
+        expect(response).to.have.status(404);
+        expect(response.body).to.eql({
+            "error": "Oops, You've reached a dead end"
+        });
+	  });
   });
